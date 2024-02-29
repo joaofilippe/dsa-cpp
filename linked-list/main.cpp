@@ -1,5 +1,4 @@
 #include <iostream>
-#include <bits/stdc++.h>
 using namespace std;
 
 class Node
@@ -18,19 +17,23 @@ public:
     };
     void setValue(int v)
     {
-        value = v;
+         Node::value = v;
     };
-    void setNext(Node *l)
+    void setNext(Node* n)
     {
-        next = l;
+        next = n;
     };
-    void insertFront(int value)
+    void insertStart(Node*& head, int v)
     {
-    }
-    void insertBack(int value){
+        Node* node = new Node();
+        node->setValue(v);
+        node->setNext(head);
+        head = node;
+    };
+    void insertEnd(int v){
 
     };
-    void insertBetweenNode(int value, Node *node){};
+    void insertBetweenNode(int v, Node *n){};
 };
 
 int main()
@@ -53,11 +56,13 @@ int main()
     three->setNext(NULL);
 
     head = one;
-    while (head != NULL)
+
+    for (Node *curr = head; curr != NULL; curr = curr->getNext())
     {
-        cout << to_string(head->getValue()) << endl;
-        head = head->getNext();
+        cout << to_string(curr->getValue()) << endl;
     };
+
+    head->insertStart(head, 55);
 
     return 0;
 }
